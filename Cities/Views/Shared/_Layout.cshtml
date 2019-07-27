@@ -4,17 +4,36 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Cities</title>
+    @*<script asp-src-include="/lib/jquery/dist/**/*.js"></script>*@
+    @*<script asp-src-include="/lib/jquery/dist/**/*.min.js"></script>*@
+    @*<script asp-src-include="/lib/jquery/dist/**/*.js" asp-src-exclude="**.min.js"></script>*@
+    @*<environment names="development">
+            <script asp-src-include="/lib/jquery/dist/**/*.js" asp-src-exclude="**.min.js"></script>
+        </environment>
+        <environment names="production">
+            <script asp-src-include="lib/jquery/dist/**/*.min.js" asp-append-version="true"></script>
+        </environment>*@
+    @*Using CDN*@
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"
+            asp-fallback-src-include="/lib/jquery/dist/**/*.min.js"
+            asp-fallback-test="window.jQuery"></script>
     <link href="/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 @*<body class="panel-body">
-    <div show-for-action="Index" class="panel-body bg-danger">
-        <h2>Important Message</h2>
-    </div>
-    <div title="Cities">
-        @RenderBody()
-    </div>
-</body>*@
+        <div show-for-action="Index" class="panel-body bg-danger">
+            <h2>Important Message</h2>
+        </div>
+        <div title="Cities">
+            @RenderBody()
+        </div>
+    </body>*@
 <body class="panel-body">
+    <environment names="development">
+        <div class="panel-body bg-info"><h2>This is Development</h2></div>
+    </environment>
+    <environment names="production">
+        <div class="panel-body bg-danger"><h2>This is Production</h2></div>
+    </environment>
     <div>@RenderBody()</div>
 </body>
 </html>
